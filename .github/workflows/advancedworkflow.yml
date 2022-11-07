@@ -16,13 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v2.1.5
         with:
-          node-version: '16'
+          node-version: '12'
 
       - run: npx vuepress build
       - name: Upload result of vuepress build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: static-website
           path: .vuepress/dist
@@ -35,12 +35,12 @@ jobs:
 
     steps:
       - name: Download build of static website
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
           name: static-website
           path: .vuepress/dist
       - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v3
+        uses: crazy-max/ghaction-github-pages@v2
         with:
           build_dir: .vuepress/dist
         env:
